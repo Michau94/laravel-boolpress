@@ -14,7 +14,7 @@
                 @forelse ($posts as $post)
                     <tr>
                         <td>{{ $post->title }}</td>
-                        <td> {{ $post->created_at }}</td>
+                        <td> {{ $post->getCreationTime('created_at') }}</td>
                         <td><a href="{{ route('admin.posts.show', $post->id) }}">Dettagli</a></td>
                     </tr>
                 @empty
