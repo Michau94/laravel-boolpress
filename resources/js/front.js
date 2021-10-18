@@ -9,7 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vue from 'vue';
-import App from './components/App.vue';
+import App from './views/App.vue';
 
 const app = new Vue({
 

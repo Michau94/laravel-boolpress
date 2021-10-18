@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 
 
-//# Rotte che necessitano di autenticazione
+//# Rotte che necessitano di autenticazione (Admin); 
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
 
