@@ -19,7 +19,11 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
+
+//# Rotte che necessitano di autenticazione
+
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
 
     Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('posts', 'PostController');
 });
