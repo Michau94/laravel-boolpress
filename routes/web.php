@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guests.home');
-});
 
 Auth::routes(['register' => false]);
 
@@ -30,7 +27,6 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->
 
 // se non appartiene a nessuna delle rotte sovrastanti deve gestire questa pagina
 
-Route::get("{any?}", function () {
-
-    return view('guests.home')->where("any", '.*');
-});
+Route::get('{any?}', function () {
+    return view('guests.home');
+})->where('any', '.*');
