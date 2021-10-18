@@ -27,3 +27,10 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('posts', 'PostController');
 });
+
+// se non appartiene a nessuna delle rotte sovrastanti deve gestire questa pagina
+
+Route::get("{any?}", function () {
+
+    return view('guests.home')->where("any", '.*');
+});
