@@ -1922,8 +1922,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "App"
+  name: "App",
+  data: function data() {
+    return {
+      posts: []
+    };
+  },
+  methods: {
+    getPost: function getPost() {
+      var _this = this;
+
+      axios.get("http://localhost:8000/api/posts/").then(function (res) {
+        _this.posts = res.data;
+      })["catch"](function (e) {
+        console.error;
+      });
+    }
+  },
+  created: function created() {
+    this.getPost();
+  }
 });
 
 /***/ }),
@@ -37589,27 +37614,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("main", [
+      _c(
+        "div",
+        { staticClass: "row justify-content-center" },
+        _vm._l(_vm.posts, function(post) {
+          return _c("div", { key: post.id, staticClass: "col-md-8" }, [
+            _c("div", { staticClass: "card m-3" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _vm._v(_vm._s(post.title))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _vm._v(_vm._s(post.content))
+              ])
+            ])
+          ])
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Welcome to our Site!")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("Making some changes!")
-            ])
-          ])
-        ])
-      ])
+    return _c("header", { staticClass: "text-center" }, [
+      _c("h1", [_vm._v("Boolpress")])
     ])
   }
 ]
@@ -49894,7 +49930,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // IMPORTAZIONE GLOBALE DI AXIOS
+
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
