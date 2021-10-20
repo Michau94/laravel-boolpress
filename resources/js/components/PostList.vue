@@ -5,6 +5,25 @@
       <h3 class="text-secondary text-center">Lista post</h3>
       <PostCard v-for="post in posts" :key="post.id" :post="post" />
     </div>
+
+    <nav aria-label="..." class="d-flex justify-content-center">
+      <ul class="pagination">
+        <li
+          class="page-item"
+          @click="getPost(pagination.currentPage - 1)"
+          :class="{ disabled: pagination.currentPage == 1 }"
+        >
+          <a class="page-link">Previous</a>
+        </li>
+        <li
+          class="page-item"
+          @click="getPost(pagination.currentPage + 1)"
+          :class="{ disabled: pagination.currentPage == pagination.lastPage }"
+        >
+          <a class="page-link">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -21,17 +40,19 @@ export default {
     return {
       posts: [],
       isLoading: true,
+      pagination: {},
     };
   },
   methods: {
-    getPost() {
+    getPost(n) {
       axios
-        .get("http://localhost:8000/api/posts/")
+        .get(`http://localhost:8000/api/posts/?page=${n}`)
         .then((res) => {
           this.isLoading = true;
           const { data, current_page, last_page } = res.data;
           this.posts = data;
           this.isLoading = false;
+          this.pagination = { currentPage: current_page, lastPage: last_page };
         })
         .catch((e) => {
           console.error(e);
