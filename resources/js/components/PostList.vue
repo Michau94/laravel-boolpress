@@ -24,10 +24,11 @@ export default {
       axios
         .get("http://localhost:8000/api/posts/")
         .then((res) => {
-          this.posts = res.data;
+          const { data, current_page, last_page } = res.data;
+          this.posts = data;
         })
         .catch((e) => {
-          console.error;
+          console.error(e);
         });
     },
   },
