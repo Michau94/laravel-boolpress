@@ -1959,6 +1959,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PostCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostCard.vue */ "./resources/js/components/PostCard.vue");
+/* harmony import */ var _Loader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loader.vue */ "./resources/js/components/Loader.vue");
+//
 //
 //
 //
@@ -1969,14 +1971,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostList",
   components: {
-    PostCard: _PostCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    PostCard: _PostCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Loader: _Loader_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      isLoading: true
     };
   },
   methods: {
@@ -1984,11 +1989,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("http://localhost:8000/api/posts/").then(function (res) {
+        _this.isLoading = true;
         var _res$data = res.data,
             data = _res$data.data,
             current_page = _res$data.current_page,
             last_page = _res$data.last_page;
         _this.posts = data;
+        _this.isLoading = false;
       })["catch"](function (e) {
         console.error(e);
       });
@@ -2011,7 +2018,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PostList_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/PostList.vue */ "./resources/js/components/PostList.vue");
-/* harmony import */ var _components_Loader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Loader.vue */ "./resources/js/components/Loader.vue");
 //
 //
 //
@@ -2024,14 +2030,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   components: {
-    PostList: _components_PostList_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Loader: _components_Loader_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    PostList: _components_PostList_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -38419,19 +38422,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h3", { staticClass: "text-secondary text-center" }, [
-      _vm._v("Lista post")
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      _vm._l(_vm.posts, function(post) {
-        return _c("PostCard", { key: post.id, attrs: { post: post } })
-      }),
-      1
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _vm.isLoading
+        ? _c("Loader")
+        : _c(
+            "div",
+            [
+              _c("h3", { staticClass: "text-secondary text-center" }, [
+                _vm._v("Lista post")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.posts, function(post) {
+                return _c("PostCard", { key: post.id, attrs: { post: post } })
+              })
+            ],
+            2
+          )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38455,18 +38467,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("Loader"),
-      _vm._v(" "),
-      _c("main", [_c("PostList")], 1)
-    ],
-    1
-  )
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("main", [_c("PostList")], 1)
+  ])
 }
 var staticRenderFns = [
   function() {
