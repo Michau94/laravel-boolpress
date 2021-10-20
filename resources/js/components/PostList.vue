@@ -6,7 +6,13 @@
       <PostCard v-for="post in posts" :key="post.id" :post="post" />
     </div>
 
-    <nav aria-label="..." class="d-flex justify-content-center">
+    <Navigation
+      :currentPage="pagination.currentPage"
+      :lastPage="pagination.lastPage"
+      @pageChange="getPost"
+    />
+
+    <!-- <nav aria-label="..." class="d-flex justify-content-center">
       <ul class="pagination">
         <li
           class="page-item"
@@ -16,6 +22,15 @@
           <a class="page-link">Previous</a>
         </li>
         <li
+          v-for="n in pagination.lastPage"
+          :key="n"
+          class="page-item"
+          :class="{ active: pagination.currentPage == n }"
+          @click="getPost(n)"
+        >
+          <a class="page-link"> {{ n }}</a>
+        </li>
+        <li
           class="page-item"
           @click="getPost(pagination.currentPage + 1)"
           :class="{ disabled: pagination.currentPage == pagination.lastPage }"
@@ -23,18 +38,20 @@
           <a class="page-link">Next</a>
         </li>
       </ul>
-    </nav>
+    </nav> -->
   </div>
 </template>
 
 <script>
 import PostCard from "./PostCard.vue";
 import Loader from "./Loader.vue";
+import Navigation from "./Navigation.vue";
 export default {
   name: "PostList",
   components: {
     PostCard,
     Loader,
+    Navigation,
   },
   data() {
     return {
@@ -57,6 +74,10 @@ export default {
         .catch((e) => {
           console.error(e);
         });
+    },
+
+    getPage(n) {
+      this.getPost(n);
     },
   },
 
