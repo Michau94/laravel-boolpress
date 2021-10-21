@@ -31,7 +31,7 @@
 </div>
 <label for="category_id">Category:</label>
 <select id="category_id" class="form-control form-group" name="category_id">
-    <option>Nessuna categoria</option>
+    <option value=' '>Nessuna categoria</option>
     @foreach ($categories as $category)
         <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
     @endforeach
