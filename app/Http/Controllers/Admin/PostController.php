@@ -43,10 +43,12 @@ class PostController extends Controller
     {
 
         $request->validate([
+            'category_id' => 'nullable',
             'title' => 'required | min:5',
-            'content' =>  'required | max:100'
+            'content' =>  'required | max:100',
 
         ]);
+
         $data = $request->all();
         $post = new Post();
         $post->fill($data);
