@@ -23,13 +23,19 @@
     <div class="@error('content') invalid-feedback @enderror">
         @error('content')
             {{ $message }}
-
         @enderror</div>
 </div>
 <div class="form-group">
     <label for="image">Image Url</label>
     <input type="text" class="form-control" id="image" name="image" value="{{ old('image', $post->image) }}">
 </div>
+<label for="category_id">Category:</label>
+<select id="category_id" class="form-control form-group" name="category_id">
+    <option>None</option>
+    @foreach ($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->name }}</option>
+    @endforeach
+</select>
 <div class="d-flex justify-content-end">
 
     <button type="submit" class="btn btn-success">Confirm</button>
