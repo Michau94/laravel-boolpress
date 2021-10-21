@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import PostList from "../components/PostList.vue";
+import PostList from "../components/posts/PostList.vue";
 export default {
   name: "App",
   components: {

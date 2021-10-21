@@ -3,6 +3,11 @@
     <Loader v-if="isLoading" />
     <div v-else>
       <h3 class="text-secondary text-center">Lista post</h3>
+      <Navigation
+        :currentPage="pagination.currentPage"
+        :lastPage="pagination.lastPage"
+        @pageChange="getPost"
+      />
       <PostCard v-for="post in posts" :key="post.id" :post="post" />
     </div>
 
@@ -44,8 +49,8 @@
 
 <script>
 import PostCard from "./PostCard.vue";
-import Loader from "./Loader.vue";
-import Navigation from "./Navigation.vue";
+import Loader from "../Loader.vue";
+import Navigation from "../Navigation.vue";
 export default {
   name: "PostList",
   components: {

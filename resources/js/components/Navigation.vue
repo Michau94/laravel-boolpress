@@ -4,7 +4,7 @@
       <li
         class="page-item"
         @click="$emit('pageChange', currentPage - 1)"
-        :class="{ disabled: currentPage == 1 }"
+        :class="{ 'd-none': currentPage == 1 }"
       >
         <a class="page-link">Previous</a>
       </li>
@@ -19,8 +19,8 @@
       </li>
       <li
         class="page-item"
+        :class="{ 'd-none': currentPage == lastPage }"
         @click="$emit('pageChange', currentPage + 1)"
-        :class="{ disabled: currentPage === lastPage }"
       >
         <a class="page-link">Next</a>
       </li>
