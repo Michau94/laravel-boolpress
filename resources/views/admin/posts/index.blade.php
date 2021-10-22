@@ -22,7 +22,7 @@
                         <td>{{ $post->title }}</td>
                         <td> {{ $post->getCreationTime('created_at') }}</td>
                         <td>
-                            @if ($post->category) <span class="badge badge-pill badge-primary">{{ $post->category->name }}</span>@else nessuna categoria @endif
+                            @if ($post->category) <span class="badge badge-pill badge-{{ $post->category->color }}">{{ $post->category->name }}</span>@else nessuna categoria @endif
                         </td>
                         <td> @if ($post->user_id){{ $post->user->name }} @else Anonimo @endif</td>
                         <td class="d-flex justify-content-end">
