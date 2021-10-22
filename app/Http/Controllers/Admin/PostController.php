@@ -21,8 +21,7 @@ class PostController extends Controller
     {
 
         $posts = Post::orderBy('id', 'desc')->get();
-        $user = User::find(Auth::id());
-        return view('admin.posts.index', compact('posts', 'user'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**

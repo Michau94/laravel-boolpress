@@ -5,10 +5,22 @@
         <div class="card-header">{{ post.title }}</div>
         <div class="card-body">{{ post.content }}</div>
         <div class="card-footer d-flex justify-content-end">
-          <span class="p-1" v-if="post.category"
-            >Category: {{ post.category.name }}</span
-          >
-          <span v-else>Category: Nessuna Categoria</span>
+          <div class="category p-2">
+            <div v-if="post.category">
+              Category:
+              <span
+                class="badge badge-pill"
+                :class="'badge-' + post.category.color"
+              >
+                {{ post.category.name }}</span
+              >
+            </div>
+            <div v-else>Category: Nessuna Categoria</div>
+          </div>
+          <div class="author p-2">
+            <div v-if="post.user">Autore: {{ post.user.name }}</div>
+            <div v-else>Autore: Anonimo</div>
+          </div>
         </div>
       </div>
     </div>

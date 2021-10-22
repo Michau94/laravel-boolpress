@@ -1994,6 +1994,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
   props: ["post"]
@@ -38583,11 +38595,31 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-footer d-flex justify-content-end" }, [
-          _vm.post.category
-            ? _c("span", { staticClass: "p-1" }, [
-                _vm._v("Category: " + _vm._s(_vm.post.category.name))
-              ])
-            : _c("span", [_vm._v("Category: Nessuna Categoria")])
+          _c("div", { staticClass: "category p-2" }, [
+            _vm.post.category
+              ? _c("div", [
+                  _vm._v("\n            Category:\n            "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "badge badge-pill",
+                      class: "badge-" + _vm.post.category.color
+                    },
+                    [
+                      _vm._v(
+                        "\n              " + _vm._s(_vm.post.category.name)
+                      )
+                    ]
+                  )
+                ])
+              : _c("div", [_vm._v("Category: Nessuna Categoria")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "author p-2" }, [
+            _vm.post.user
+              ? _c("div", [_vm._v("Autore: " + _vm._s(_vm.post.user.name))])
+              : _c("div", [_vm._v("Autore: Anonimo")])
+          ])
         ])
       ])
     ])
