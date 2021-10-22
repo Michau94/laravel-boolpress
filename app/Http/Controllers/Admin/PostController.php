@@ -8,6 +8,7 @@ use App\Post;
 use Illuminate\Support\Str;
 use App\Category;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class PostController extends Controller
 {
@@ -18,8 +19,10 @@ class PostController extends Controller
      */
     public function index()
     {
+
         $posts = Post::all();
-        return view('admin.posts.index', compact('posts'));
+        $user = User::find(Auth::id());
+        return view('admin.posts.index', compact('posts', 'user'));
     }
 
     /**
@@ -68,7 +71,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('admin.posts.show', compact('post'));
+        $user = User::find(Auth::id());
+        return view('admin.posts.show', compact('post', 'user'));
     }
 
     /**

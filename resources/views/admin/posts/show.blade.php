@@ -9,6 +9,10 @@
             <p> {{ $post->content }}</p>
 
 
+            <div>
+                Written by:
+                @if ($post->user_id)  {{ $post->user->name }} @else Anonimo @endif
+            </div>
             <div class="d-flex justify-content-end">
                 <a class="btn btn-secondary" href="{{ route('admin.posts.index') }}">Go Back</a>
             </div>
