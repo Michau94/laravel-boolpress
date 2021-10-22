@@ -1992,6 +1992,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
   props: ["post"]
@@ -38580,17 +38582,13 @@ var render = function() {
           _vm._v(_vm._s(_vm.post.content))
         ]),
         _vm._v(" "),
-        _vm.post.category
-          ? _c("div", { staticClass: "card-footer" }, [
-              _vm._v(
-                "\n        Category:" +
-                  _vm._s(_vm.post.category.name) +
-                  "\n      "
-              )
-            ])
-          : _c("div", { staticClass: "card-footer" }, [
-              _vm._v("Category: 'Nessuna Categoria'")
-            ])
+        _c("div", { staticClass: "card-footer d-flex justify-content-end" }, [
+          _vm.post.category
+            ? _c("span", { staticClass: "p-1" }, [
+                _vm._v("Category: " + _vm._s(_vm.post.category.name))
+              ])
+            : _c("span", [_vm._v("Category: Nessuna Categoria")])
+        ])
       ])
     ])
   ])

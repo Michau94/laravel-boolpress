@@ -43,7 +43,7 @@ class PostController extends Controller
     {
 
         $request->validate([
-            'category_id' => 'nullable',
+            'category_id' => 'nullable | exists:categories,id',
             'title' => 'required | min:5',
             'content' =>  'required | max:100',
 
@@ -90,6 +90,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'category_id' => 'nullable | exists:categories,id',
+            'title' => 'required | min:5',
+            'content' =>  'required | max:200',
+
+        ]);
+
         $data = $request->all();
         $post->update($data);
 

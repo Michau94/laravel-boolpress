@@ -9,21 +9,22 @@
     <label for="title">Titolo:</label>
     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
         placeholder="Inserisci qui il tuo titolo" value="{{ old('title', $post->title) }}">
-    <div class="@error('title') invalid-feedback @enderror">
-        @error('title')
+    @error('title')
+        <div class="invalid-feedback">
             {{ $message }}
-
-        @enderror</div>
+        </div>
+    @enderror
 </div>
 
 <div class="form-group">
     <label for="content">Contenuto post:</label>
     <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content"
         rows="5">{{ old('content', $post->content) }}</textarea>
-    <div class="@error('content') invalid-feedback @enderror">
-        @error('content')
+    @error('content')
+        <div class="invalid-feedback">
             {{ $message }}
-        @enderror</div>
+        </div>
+    @enderror
 </div>
 <div class="form-group">
     <label for="image">Image Url</label>
@@ -33,7 +34,7 @@
 <select id="category_id" class="form-control form-group" name="category_id">
     <option value=" ">Nessuna Categoria</option>
     @foreach ($categories as $category)
-        <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
+        <option @if (old('category_id', $post->category_id) == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
     @endforeach
 </select>
 <div class="d-flex justify-content-end">

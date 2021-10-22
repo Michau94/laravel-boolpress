@@ -4,10 +4,12 @@
       <div class="card m-3">
         <div class="card-header">{{ post.title }}</div>
         <div class="card-body">{{ post.content }}</div>
-        <div v-if="post.category" class="card-footer">
-          Category:{{ post.category.name }}
+        <div class="card-footer d-flex justify-content-end">
+          <span class="p-1" v-if="post.category"
+            >Category: {{ post.category.name }}</span
+          >
+          <span v-else>Category: Nessuna Categoria</span>
         </div>
-        <div v-else class="card-footer">Category: 'Nessuna Categoria'</div>
       </div>
     </div>
   </div>
