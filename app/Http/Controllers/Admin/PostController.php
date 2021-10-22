@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
 use App\Category;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -48,11 +49,12 @@ class PostController extends Controller
             'content' =>  'required | max:100',
 
         ]);
-
         $data = $request->all();
+
         $post = new Post();
         $post->fill($data);
         $post->slug = Str::slug($post->title, '-');
+        $post->user_id = Auth::id();
         $post->save();
 
         return redirect()->route('admin.posts.show', compact('post'));

@@ -10,7 +10,7 @@
                 <tr>
                     <th scope="col">Title</th>
                     <th scope="col">Created at:</th>
-                    <th scope="col"> Categoria</th>
+                    <th scope="col">Categoria</th>
                     <th scope="col"></th>
 
                 </tr>
