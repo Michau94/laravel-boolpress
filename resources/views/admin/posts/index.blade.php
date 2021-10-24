@@ -12,6 +12,7 @@
                     <th scope="col">Created at:</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Author</th>
+                    <th scope="col">Address</th>
                     <th scope="col"></th>
 
                 </tr>
@@ -25,6 +26,7 @@
                             @if ($post->category) <span class="badge badge-pill badge-{{ $post->category->color }}">{{ $post->category->name }}</span>@else nessuna categoria @endif
                         </td>
                         <td> @if ($post->user_id){{ $post->user->name }} @else Anonimo @endif</td>
+                        <td>@if ($post->user_id) {{ $post->user->userinfo->address }} @else - @endif</td>
                         <td class="d-flex justify-content-end">
                             <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary mr-2">Dettagli</a>
                             <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning mr-2">Modifica</a>

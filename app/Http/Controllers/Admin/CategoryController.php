@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $request->validate([
 
             'name' => 'required | min:2',
-            'color' => 'required'
+            'color' => 'nullable'
 
         ]);
         $data = $request->all();
@@ -92,6 +92,7 @@ class CategoryController extends Controller
         $request->validate([
 
             'name' =>  'required | max:15',
+            'color' => 'nullable'
 
         ]);
 
