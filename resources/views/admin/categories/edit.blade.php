@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <h1>Create a New Category</h1>
+        <h1>Mofify Category</h1>
 
         @include('includes.admin.categories.form')
     </div>

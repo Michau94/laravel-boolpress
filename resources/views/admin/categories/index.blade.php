@@ -2,11 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="d-flex justify-content-end m-3"><a href="{{ route('admin.posts.create') }}"
-                class="btn btn-success">Create Post</a></div>
+        <div class="d-flex justify-content-end m-3"><a href="{{ route('admin.categories.create') }}"
+                class="btn btn-success">Create Category</a></div>
 
         <table class="table">
             <thead>
+                <h1>Categories</h1>
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Color</th>

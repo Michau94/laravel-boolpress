@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -24,9 +25,12 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        //
+
+        $category = new Category();
+
+        return view('admin.categories.create', compact('category'));
     }
 
     /**
@@ -37,7 +41,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'name' => 'required | min:2',
+            'color' => 'required'
+
+        ]);
+        $data = $request->all();
+
+        $category = new Category();
+        $category->fill($data);
+        $category->slug = Str::slug($category->name, '-');
+
+        $category->save();
+
+        return redirect()->route('admin.categories.show', compact('category'));
     }
 
     /**
@@ -48,7 +66,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('admin.categories.show', $category->id);
+        return view('admin.categories.show', compact('category'));
     }
 
     /**
@@ -57,9 +75,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -69,9 +87,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+
+            'name' =>  'required | max:15',
+
+        ]);
+
+        $data = $request->all();
+        $category->update($data);
+
+        return redirect()->route('admin.categories.show', $category->id);
     }
 
     /**
@@ -80,8 +107,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index');
     }
 }
