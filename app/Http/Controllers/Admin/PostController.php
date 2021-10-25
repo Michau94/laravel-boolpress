@@ -43,13 +43,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Tag $tag)
     {
 
         $request->validate([
             'category_id' => 'nullable | exists:categories,id',
             'title' => 'required | min:5',
             'content' =>  'required | max:100',
+            'tags' => 'nullable|exists:tags,id'
 
         ]);
         $data = $request->all();
@@ -60,6 +61,7 @@ class PostController extends Controller
         $post->user_id = Auth::id();
         $post->save();
 
+        if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
         return redirect()->route('admin.posts.show', compact('post'));
     }
 

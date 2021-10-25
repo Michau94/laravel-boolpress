@@ -37,13 +37,16 @@
         <option @if (old('category_id', $post->category_id) == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
     @endforeach
 </select>
-
-@foreach ($tags as $tag)
-    <div class="form-check form-check-inline form-group">
-        <input class="form-check-input" type="checkbox" id="tag-{{ $tag->id }}" value="{{ $tag->id }}">
-        <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
-    </div>
-@endforeach
+<fieldset>
+    <h5>Tags</h5>
+    @foreach ($tags as $tag)
+        <div class="form-check form-check-inline form-group">
+            <input class="form-check-input" type="checkbox" id="tag-{{ $tag->id }}" value="{{ $tag->id }}"
+                name="tags[]" @if (in_array($tag->id, old('tags', []))) checked @endif>
+            <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
+        </div>
+    @endforeach
+</fieldset>
 
 
 <div class="d-flex justify-content-end">
