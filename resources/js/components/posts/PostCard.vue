@@ -18,7 +18,10 @@
           <div v-else>No tags</div>
         </div>
         <div class="card-body">{{ post.content }}</div>
-        <div class="card-footer d-flex justify-content-end">
+        <div class="card-footer d-flex justify-content-evenly">
+          <div class="p-2">
+            Pubblication date: {{ formatDate(post.created_at) }}
+          </div>
           <div class="category p-2">
             <div v-if="post.category">
               Category:
@@ -42,9 +45,15 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
 export default {
   name: "PostCard",
   props: ["post"],
+  methods: {
+    formatDate(date) {
+      return dayjs(date).format("DD/MM/YYYY HH:mm");
+    },
+  },
 };
 </script>
 

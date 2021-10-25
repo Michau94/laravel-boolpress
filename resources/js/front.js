@@ -10,6 +10,7 @@ window.Vue = require('vue');
 
 // IMPORTAZIONE GLOBALE DI AXIOS
 window.axios = require('axios');
+window.dayjs = require('dayjs');
 
 import Vue from 'vue';
 import App from './views/App.vue';
