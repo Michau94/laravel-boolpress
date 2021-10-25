@@ -6,6 +6,7 @@ use App\Post;
 use Illuminate\Support\Str;
 use App\User;
 use Illuminate\Support\Arr;
+use App\Category;
 
 class TablePostsSeeder extends Seeder
 
@@ -19,6 +20,7 @@ class TablePostsSeeder extends Seeder
     {
 
         $users = User::select('id')->pluck('id')->toArray();
+        $categories = Category::select('id')->pluck('id')->toArray();
 
 
 
@@ -31,7 +33,7 @@ class TablePostsSeeder extends Seeder
             $post->image = $faker->imageUrl();
             $post->slug = Str::slug($post->title, '-');
             $post->user_id = Arr::random($users);
-
+            $post->category_id = Arr::random($categories);
 
             $post->save();
         };

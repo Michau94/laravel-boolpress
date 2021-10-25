@@ -5,8 +5,20 @@
         <div class="card p-3">
 
             <h1>{{ $post->title }}</h1>
-            <h2>@if ($post->category_id) {{ $post->category->name }} @else nessuna categoria @endif</h2>
+            <div>
+                @if ($post->tags)
+                    @forelse ($post->tags as $tag)
+
+                        <span class="badge badge-pill"
+                            style="background-color : {{ $tag->color }}">{{ $tag->name }}</span>
+                    @empty
+                        -
+                    @endforelse
+                @endif
+            </div>
+            <h4> Category:@if ($post->category_id) {{ $post->category->name }} @else nessuna categoria @endif</h4>
             <p> {{ $post->content }}</p>
+
 
 
             <div>
