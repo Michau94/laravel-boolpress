@@ -2006,6 +2006,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
   props: ["post"]
@@ -38587,7 +38601,28 @@ var render = function() {
     _c("div", { staticClass: "col-md-8" }, [
       _c("div", { staticClass: "card m-3" }, [
         _c("div", { staticClass: "card-header" }, [
-          _vm._v(_vm._s(_vm.post.title))
+          _c("h2", [_vm._v(_vm._s(_vm.post.title))]),
+          _vm._v(" "),
+          _vm.post.tags.length > 0
+            ? _c(
+                "div",
+                [
+                  _vm._v("\n          Tags:\n          "),
+                  _vm._l(_vm.post.tags, function(tag) {
+                    return _c(
+                      "span",
+                      {
+                        key: tag.id,
+                        staticClass: "badge badge-pill",
+                        style: "background-color:" + tag.color
+                      },
+                      [_vm._v("\n            " + _vm._s(tag.name))]
+                    )
+                  })
+                ],
+                2
+              )
+            : _c("div", [_vm._v("No tags")])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [

@@ -2,7 +2,21 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card m-3">
-        <div class="card-header">{{ post.title }}</div>
+        <div class="card-header">
+          <h2>{{ post.title }}</h2>
+          <div v-if="post.tags.length > 0">
+            Tags:
+            <span
+              v-for="tag in post.tags"
+              :key="tag.id"
+              class="badge badge-pill"
+              :style="'background-color:' + tag.color"
+            >
+              {{ tag.name }}</span
+            >
+          </div>
+          <div v-else>No tags</div>
+        </div>
         <div class="card-body">{{ post.content }}</div>
         <div class="card-footer d-flex justify-content-end">
           <div class="category p-2">
