@@ -18,7 +18,9 @@
 
 <label for="color">Color:</label>
 <select id="color" class="form-control form-group" name="color">
-    <option value="">Nessun Colore</option>
+    <option>Nessun Colore</option>
+
+    {{-- Verificare questa parte --}}
     <option @if (old('color', $category->color) && old('color', $category->color) == $category->color) selected @endif value="primary">Blue</option>
     <option @if (old('color', $category->color) && old('color', $category->color) == $category->color) selected @endif value="secondary">Grey</option>
     <option @if (old('color', $category->color) && old('color', $category->color) == $category->color) selected @endif value="warning">Orange</option>
