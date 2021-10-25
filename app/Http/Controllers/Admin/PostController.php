@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Category;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -30,9 +31,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        $tags = Tag::all();
         $categories = Category::all();
         $post = new Post();
-        return view('admin.posts.create', compact('post', 'categories'));
+        return view('admin.posts.create', compact('post', 'categories', 'tags'));
     }
 
     /**
