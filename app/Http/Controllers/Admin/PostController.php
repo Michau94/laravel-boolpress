@@ -83,10 +83,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post, Tag $tag)
     {
+        $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tagIds = $post->tags->pluck('id')->toArray();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'tagIds'));
     }
 
     /**
@@ -102,10 +104,16 @@ class PostController extends Controller
             'category_id' => 'nullable | exists:categories,id',
             'title' => 'required | min:5',
             'content' =>  'required | max:200',
+            'tags' => 'nullable|exists:tags,id'
 
         ]);
 
         $data = $request->all();
+
+        if (!array_key_exists('tags', $data))
+            $post->tags()->detach();
+        else
+            $post->tags()->sync($data['tags']);
         $post->update($data);
 
         return redirect()->route('admin.posts.show', $post->id);
@@ -119,6 +127,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if (count($post->tags)) {
+            $post->tags()->detach();
+        }
         $post->delete();
         return redirect()->route('admin.posts.index');
     }
