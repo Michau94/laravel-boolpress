@@ -2025,6 +2025,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
@@ -38697,7 +38705,13 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _vm._v(_vm._s(_vm.post.content))
+          _vm._v("\n        " + _vm._s(_vm.post.content) + "\n        "),
+          _vm.post.upload_image
+            ? _c("img", {
+                staticClass: "img-fluid",
+                attrs: { src: "storage/" + _vm.post.upload_image, alt: "foto" }
+              })
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c(

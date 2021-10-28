@@ -17,7 +17,15 @@
           </div>
           <div v-else>No tags</div>
         </div>
-        <div class="card-body">{{ post.content }}</div>
+        <div class="card-body">
+          {{ post.content }}
+          <img
+            class="img-fluid"
+            v-if="post.upload_image"
+            :src="'storage/' + post.upload_image"
+            alt="foto"
+          />
+        </div>
         <div class="card-footer d-flex justify-content-evenly">
           <div class="p-2">
             Pubblication date: {{ formatDate(post.created_at) }}
