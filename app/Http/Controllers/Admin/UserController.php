@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -57,9 +58,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        $user_roles = $user->roles->pluck('id')->toArray();
+        return view('admin.users.edit', compact('user', 'roles', 'user_roles'));
     }
 
     /**
@@ -69,9 +72,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+
+        $request->validate(['roles' => 'nullable| exists:roles,id']);
+
+        if (!$request->roles)
+            $user->roles()->detach();
+        else
+            $user->roles()->sync($request->roles);
+
+        // non c'è bisogno di update in quanto non si agisce direttamente sulla tabella users o roles
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
