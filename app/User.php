@@ -52,4 +52,18 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Role');
     }
+
+    // check se admin
+    public function isAdmin()
+    {
+        $admin_role = Role::where('name', 'admin')->first();
+        return $this->roles->contains($admin_role);
+    }
+
+    // Alternativa dinamica
+    public function hasRole($role)
+    {
+        $admin_role = Role::where('name', $role)->first();
+        return $this->roles->contains($admin_role);
+    }
 }
