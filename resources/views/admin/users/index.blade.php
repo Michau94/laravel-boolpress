@@ -27,10 +27,12 @@
                         <td>
                             @forelse ($user->roles as $role) <span class="badge badge-pill" style="background-color: {{ $role->color }}">{{ $role->name }}</span> @empty - @endforelse
                         </td>
-                        <td class="d-flex justify-content-end">
-                            <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning mr-2">Modifica
-                                Ruolo</a>
-                        </td>
+                        @if (Auth::user()->hasRole('admin'))
+                            <td class="d-flex justify-content-end">
+                                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning mr-2">Modifica
+                                    Ruolo</a>
+                            </td>
+                        @endif
                     </tr>
                 @empty
                     <tr>
