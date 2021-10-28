@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="container">
+
         <h1>Modify Roles for {{ $user->name }}</h1>
 
         <form action="{{ route('admin.users.update', compact('user')) }}" method="POST">
@@ -19,8 +20,6 @@
             @endforeach
             <hr>
             <button type="submit" class="btn btn-success">Confirm</button>
-
-
 
         </form>
 

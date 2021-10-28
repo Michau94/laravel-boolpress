@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="container">
+        @include('includes.admin..alert_msg')
         <div class="d-flex justify-content-end m-3"><a href="{{ route('admin.posts.create') }}"
                 class="btn btn-success">Create Post</a></div>
 

@@ -84,7 +84,7 @@ class UserController extends Controller
 
         // non c'è bisogno di update in quanto non si agisce direttamente sulla tabella users o roles
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('alert-type', 'success')->with('alert-message', 'Role modified with success!');
     }
 
     /**
