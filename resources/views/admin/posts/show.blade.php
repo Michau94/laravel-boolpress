@@ -18,6 +18,9 @@
             </div>
             <h4> Category:@if ($post->category_id) {{ $post->category->name }} @else nessuna categoria @endif</h4>
             <p> {{ $post->content }}</p>
+            @if ($post->upload_image)
+                <img src="{{ asset('storage/' . $post->upload_image) }}" alt="ciao">
+            @endif
 
 
 

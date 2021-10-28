@@ -10,6 +10,7 @@ use App\Category;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -50,16 +51,21 @@ class PostController extends Controller
             'category_id' => 'nullable | exists:categories,id',
             'title' => 'required | min:5',
             'content' =>  'required | max:100',
-            'tags' => 'nullable|exists:tags,id'
-
+            'tags' => 'nullable|exists:tags,id',
+            'upload_image' => 'image'
         ]);
         $data = $request->all();
 
         $post = new Post();
+        $img_path = Storage::put('public', $data['upload_image']);
         $post->fill($data);
         $post->slug = Str::slug($post->title, '-');
         $post->user_id = Auth::id();
+        $post->upload_image = $img_path;
         $post->save();
+
+
+
 
         if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
         return redirect()->route('admin.posts.show', compact('post'));
@@ -109,6 +115,8 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
+        $img_path = Storage::put('public', $data['upload_image']);
+        $data['upload_image'] = $img_path;
 
         if (!array_key_exists('tags', $data))
             $post->tags()->detach();

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
-    protected $fillable = ['title', 'content', 'image', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'content', 'image', 'category_id', 'user_id', 'upload_image'];
 
     public function getCreationTime($column, $format = 'd-m-Y H:i:s')
     {

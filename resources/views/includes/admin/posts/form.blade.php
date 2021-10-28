@@ -1,8 +1,8 @@
 @if ($post->exists)
-    <form method="POST" action="{{ route('admin.posts.update', compact('post')) }}">
+    <form method="POST" action="{{ route('admin.posts.update', compact('post')) }}" enctype="multipart/form-data">
         @method('PATCH')
     @else
-        <form method="POST" action="{{ route('admin.posts.store') }}">
+        <form method="POST" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
 @endif
 @csrf
 <div class="form-group">
@@ -47,6 +47,21 @@
         </div>
     @endforeach
 </fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <label for="title">Add Image</label>
+        <input type="file" class="form-control @error('upload_image') is-invalid @enderror" id="upload_image"
+            name="upload_image">
+        @error('upload_image')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+
+</fieldset>
+
 
 
 <div class="d-flex justify-content-end">
