@@ -35,5 +35,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+li {
+  a {
+    cursor: pointer;
+  }
+}
 </style>
