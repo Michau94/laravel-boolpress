@@ -24,6 +24,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('posts', 'PostController');
     Route::resource('categories', 'CategoryController');
+    Route::resource('users', 'UserController');
 });
 
 // se non appartiene a nessuna delle rotte sovrastanti deve gestire questa pagina

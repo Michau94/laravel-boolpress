@@ -21,6 +21,9 @@ class UserTableSeeder extends Seeder
 
         $newUser->save();
 
+        // assegnamo lo stato di admin all primo utente (a me stesso)
+        $newUser->roles()->attach(1);
+
         for ($i = 0; $i < 9; $i++) {
             $newUser = new User();
             $newUser->name = $faker->userName();
