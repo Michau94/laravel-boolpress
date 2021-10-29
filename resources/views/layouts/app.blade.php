@@ -63,8 +63,10 @@
                                     <a class="dropdown-item" href="{{ route('admin.users.index') }}">Users</a>
                                     <a class="dropdown-item" href="{{ route('admin.posts.index') }}">Posts</a>
                                     <a class="dropdown-item" href="{{ route('admin.categories.index') }}">Categories</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('admin.contact') }}">Contact Form</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

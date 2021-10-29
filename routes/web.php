@@ -22,6 +22,13 @@ Auth::routes(['register' => true]);
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
 
     Route::get('/', 'HomeController@index')->name('home');
+
+    //rotte form contatto
+    Route::get('/contatti', 'EmailController@contact')->name('contact');
+    Route::post('/contact', 'EmailController@handleContact')->name('contact.send');
+    Route::get('/ths', 'EmailController@thank')->name('contact.thank');
+
+    // Rotte risorse
     Route::resource('posts', 'PostController');
     Route::resource('categories', 'CategoryController');
     Route::resource('users', 'UserController');

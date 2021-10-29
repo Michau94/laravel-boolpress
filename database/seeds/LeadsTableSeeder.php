@@ -13,10 +13,10 @@ class LeadsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $newUser = new Lead();
-        $newUser->name = $faker->userName();
-        $newUser->email = $faker->email();
-        $newUser->message = $faker->text(200);
-        $newUser->save();
+        $lead = new Lead();
+        $lead->name = $faker->userName();
+        $lead->email = $faker->email();
+        $lead->message = $faker->text(200);
+        $lead->save();
     }
 }

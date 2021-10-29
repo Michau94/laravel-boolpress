@@ -1,1 +1,2 @@
-<p> Ciao {{session('customer-name')}}</p>
+<p> Ciao {{ $name }}</p>
+<p>Ti risponderemo il prima possibile!</p>

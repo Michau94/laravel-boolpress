@@ -31,6 +31,6 @@ class SendNewMail extends Mailable
     public function build()
     {
 
-        return $this->replyTo($this->lead->email)->view('email.body')->with('customer_name', $this->lead->name);
+        return $this->replyTo($this->lead->email)->view('email.body', ['name' => $this->lead->name]);
     }
 }
